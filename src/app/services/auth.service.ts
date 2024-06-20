@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Personal } from './models/personal.model';
 import { Router } from '@angular/router';
 import { Observable, catchError, of, tap } from 'rxjs';
+import { environment } from '../../../environment';
 
 
 @Injectable({
@@ -11,12 +11,11 @@ import { Observable, catchError, of, tap } from 'rxjs';
 export class AuthService {
 
   private http = inject(HttpClient);
-  private apiUrl = 'http://tu-api.com/auth';
 
   constructor(private router: Router) { }
 
   login(credentials: { email: string, password: string }): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
+    return this.http.post<any>(`${environment.apiUrl}/User/login`, credentials).pipe(
       tap(response => {
         localStorage.setItem('token', response.token);
       }),
