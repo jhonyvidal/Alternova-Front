@@ -27,5 +27,4 @@ export class AppointmentService {
     return this.http.delete(url.toString());
   }
 
-
 }

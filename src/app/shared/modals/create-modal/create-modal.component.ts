@@ -12,6 +12,7 @@ import { ConfigApiService } from '../../../services/config.sevice';
   styleUrl: './create-modal.component.css',
 })
 export default class CreateModalComponent {
+  //detect when submit is success
   @Output() formSubmitted = new EventEmitter<void>();
 
   doctorsList = signal<any[]>([]);

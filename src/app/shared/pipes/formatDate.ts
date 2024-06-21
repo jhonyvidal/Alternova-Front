@@ -5,6 +5,17 @@ import { Pipe, PipeTransform } from '@angular/core';
     standalone: true
 })
 export class FormatDate implements PipeTransform {
+    /**
+   * Transforms a given date value into a formatted string.
+   * The format is "DayOfWeek, Day Month Year, Hours:Minutes am/pm".
+   * 
+   * Example:
+   * Input: 2023-06-20T15:30:00
+   * Output: "Tue, 20 June 2023, 3:30 pm"
+   * 
+   * @param valor - The date value to be transformed.
+   * @returns The formatted date string.
+   */
   transform(valor: any): any {
     const fecha = new Date(valor);
 

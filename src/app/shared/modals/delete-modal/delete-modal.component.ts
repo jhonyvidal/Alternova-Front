@@ -10,8 +10,12 @@ import { AppointmentService } from '../../../services/appointment.service';
   styleUrl: './delete-modal.component.css'
 })
 export default class DeleteModalComponent {
+
+  //detect when submit is success
   @Output() formSubmitted = new EventEmitter<void>();
+  //get the parent id
   @Input() id:number = 0;
+  
   isModalOpen = false;
   constructor(private appointmentService: AppointmentService){}
 
