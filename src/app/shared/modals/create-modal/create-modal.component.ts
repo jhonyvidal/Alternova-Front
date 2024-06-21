@@ -18,6 +18,7 @@ export default class CreateModalComponent {
   typesList = signal<any[]>([]);
   isModalOpen = false;
   createForm: FormGroup;
+  minDateTime: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -35,6 +36,17 @@ export default class CreateModalComponent {
   ngOnInit(){
     this.getDoctors();
     this.getTypes();
+    this.setMinDateTime();
+  }
+
+  setMinDateTime() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = ('0' + (now.getMonth() + 1)).slice(-2);
+    const day = ('0' + now.getDate()).slice(-2);
+    const hours = ('0' + now.getHours()).slice(-2);
+    const minutes = ('0' + now.getMinutes()).slice(-2);
+    this.minDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
   }
 
   toggleModal() {
