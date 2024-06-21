@@ -7,6 +7,14 @@ export interface Appointment {
     typeAppointment:string;
 }
 
+export interface AppointmentResponse {
+    currentPage:number;
+    totalPages: number;
+    pageSize: number;
+    totalCount: number;
+    data: Appointment[];
+}
+
 export interface AppointmentRequest {
     id:number;
     fechaHora: string;

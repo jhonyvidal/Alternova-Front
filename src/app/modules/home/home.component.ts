@@ -26,7 +26,7 @@ export default class HomeComponent {
   dropdownOpen = false;
   appointmentList = signal<Appointment[]>([]);
   appointments: Appointment[] = [];
-  totalItems: number = 50;
+  totalItems: number = 10;
   currentPage: number = 1;
   pageSize: number = 10;
 
@@ -40,10 +40,13 @@ export default class HomeComponent {
     this.dropdownOpen = !this.dropdownOpen;
   }
 
-  getAppointment() {
-    this.appointmentService.Get().subscribe((response) => {
+  getAppointment(pageNumber?:number, pageSize?:number) {
+    this.appointmentService.Get(pageNumber, pageSize).subscribe((response) => {
       if (response) {
-        this.appointmentList.set(response);
+        this.appointmentList.set(response.data);
+        this.totalItems = response.totalCount;
+        this.pageSize = response.pageSize;
+        this.currentPage =  response.currentPage;
       } else {
         alert('Error de autenticación');
       }
@@ -52,6 +55,6 @@ export default class HomeComponent {
 
   onPageChange(page: number): void {
     this.currentPage = page;
-    // this.getAppointment();
+    this.getAppointment(page, this.pageSize)
   }
 }

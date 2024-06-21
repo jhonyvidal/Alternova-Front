@@ -23,7 +23,6 @@ export default class DeleteModalComponent {
     this.appointmentService.Delete(this.id)
     .subscribe((response) => {
       if (response) {
-        console.log(response);
         this.isModalOpen = false;
         this.formSubmitted.emit(); 
       } else {

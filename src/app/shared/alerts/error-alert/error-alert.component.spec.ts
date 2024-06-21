@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import DeleteModalComponent from './delete-modal.component';
+import ErrorAlertComponent from './error-alert.component';
 
 
 
-describe('DeleteModalComponent', () => {
-  let component: DeleteModalComponent;
-  let fixture: ComponentFixture<DeleteModalComponent>;
+describe('ErrorAlertComponent', () => {
+  let component: ErrorAlertComponent;
+  let fixture: ComponentFixture<ErrorAlertComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DeleteModalComponent]
+      imports: [ErrorAlertComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DeleteModalComponent);
+    fixture = TestBed.createComponent(ErrorAlertComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

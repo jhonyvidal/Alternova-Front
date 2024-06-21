@@ -51,7 +51,6 @@ export default class CreateModalComponent {
       .subscribe((response) => {
         if (response) {
           this.doctorsList.set(response)
-         console.log(response);
         } else {
           alert('Error de autenticación');
         }
@@ -63,7 +62,6 @@ export default class CreateModalComponent {
       .subscribe((response) => {
         if (response) {
           this.typesList.set(response)
-         console.log(response);
         } else {
           alert('Error de autenticación');
         }
@@ -77,7 +75,6 @@ export default class CreateModalComponent {
       this.appointmentService.Post(this.createForm.value)
       .subscribe((response) => {
         if (response) {
-         console.log(response);
          this.isModalOpen = false;
          this.formSubmitted.emit(); 
         } else {

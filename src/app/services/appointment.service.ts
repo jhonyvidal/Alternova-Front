@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../environment';
-import { Appointment, AppointmentRequest } from './models/appointment.model';
+import { Appointment, AppointmentRequest, AppointmentResponse } from './models/appointment.model';
 
 
 @Injectable({
@@ -11,9 +11,10 @@ export class AppointmentService {
 
   private http = inject(HttpClient);
 
-  Get() {
-    const url = new URL(`${environment.apiUrl}/Appointment/Get`);
-    return this.http.get<Appointment[]>(url.toString());
+  Get(pageNumber?:number, pageSize?:number) {
+    const pagination = pageNumber ? `?pageNumber=${pageNumber}&pageSize=${pageSize}` : "";
+    const url = new URL(`${environment.apiUrl}/Appointment/Get${pagination}`);
+    return this.http.get<AppointmentResponse>(url.toString());
   }
 
   Post(payload:AppointmentRequest) {

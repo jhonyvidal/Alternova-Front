@@ -14,11 +14,6 @@ export default class PaginationComponent {
   @Input() pageSize: number = 5;
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
 
-  ngOnInit(){
-    console.log(this.pageSize);
-  }
-
-  
   get totalPages(): number {
     return Math.ceil(this.totalItems / this.pageSize);
   }
