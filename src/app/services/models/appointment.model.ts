@@ -3,6 +3,15 @@ export interface Appointment {
     fechaHora: string;
     comment: string;
     patientId: number;
-    doctorId: number;
-    typeAppointmentId:number;
+    doctor: string;
+    typeAppointment:string;
+}
+
+export interface AppointmentRequest {
+    id:number;
+    fechaHora: string;
+    comment: string;
+    patientId: number;
+    doctorId: string;
+    typeAppointmentId:string;
 }

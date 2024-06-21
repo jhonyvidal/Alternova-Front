@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../environment';
-import { Appointment } from './models/appointment.model';
+import { Appointment, AppointmentRequest } from './models/appointment.model';
 
 
 @Injectable({
@@ -16,12 +16,9 @@ export class AppointmentService {
     return this.http.get<Appointment[]>(url.toString());
   }
 
-  Post(payload:Appointment) {
-    payload.doctorId = 3;
-    payload.patientId = 3;
-    payload.typeAppointmentId = 3;
+  Post(payload:AppointmentRequest) {
     const url = new URL(`${environment.apiUrl}/Appointment/Post`);
-    return this.http.post<Appointment>(url.toString(), payload);
+    return this.http.post<AppointmentRequest>(url.toString(), payload);
   }
 
   Delete(id:number) {

@@ -5,6 +5,8 @@ import { AppointmentService } from '../../services/appointment.service';
 import { Appointment } from '../../services/models/appointment.model';
 import CreateModalComponent from '../../shared/modals/create-modal/create-modal.component';
 import DeleteModalComponent from '../../shared/modals/delete-modal/delete-modal.component';
+import { FormatDate } from '../../shared/pipes/formatDate';
+import PaginationComponent from '../../shared/modules/pagination/pagination.component';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +16,8 @@ import DeleteModalComponent from '../../shared/modals/delete-modal/delete-modal.
     HeaderComponent,
     CreateModalComponent,
     DeleteModalComponent,
+    PaginationComponent,
+    FormatDate
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
@@ -21,6 +25,10 @@ import DeleteModalComponent from '../../shared/modals/delete-modal/delete-modal.
 export default class HomeComponent {
   dropdownOpen = false;
   appointmentList = signal<Appointment[]>([]);
+  appointments: Appointment[] = [];
+  totalItems: number = 50;
+  currentPage: number = 1;
+  pageSize: number = 10;
 
   constructor(private appointmentService: AppointmentService) {}
 
@@ -40,5 +48,10 @@ export default class HomeComponent {
         alert('Error de autenticación');
       }
     });
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    // this.getAppointment();
   }
 }
