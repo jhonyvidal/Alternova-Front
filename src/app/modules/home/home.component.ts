@@ -17,7 +17,7 @@ import PaginationComponent from '../../shared/modules/pagination/pagination.comp
     CreateModalComponent,
     DeleteModalComponent,
     PaginationComponent,
-    FormatDate
+    FormatDate,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
@@ -40,13 +40,13 @@ export default class HomeComponent {
     this.dropdownOpen = !this.dropdownOpen;
   }
 
-  getAppointment(pageNumber?:number, pageSize?:number) {
+  getAppointment(pageNumber?: number, pageSize?: number) {
     this.appointmentService.Get(pageNumber, pageSize).subscribe((response) => {
       if (response) {
         this.appointmentList.set(response.data);
         this.totalItems = response.totalCount;
         this.pageSize = response.pageSize;
-        this.currentPage =  response.currentPage;
+        this.currentPage = response.currentPage;
       } else {
         alert('Error de autenticación');
       }
@@ -55,6 +55,15 @@ export default class HomeComponent {
 
   onPageChange(page: number): void {
     this.currentPage = page;
-    this.getAppointment(page, this.pageSize)
+    this.getAppointment(page, this.pageSize);
+  }
+
+  calculateStartIndex(): number { 
+    return (this.currentPage - 1) * this.pageSize + 1;
+  }
+
+  calculateEndIndex(): number {
+    const end = this.currentPage * this.pageSize;
+    return end > this.totalItems ? this.totalItems : end;
   }
 }
